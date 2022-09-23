@@ -16,4 +16,6 @@ public class _MedicoEntity_ extends BaseEntity
     private String RegistroMedico;
     private String especialidad;
     private Long id;
+    
+    
 }

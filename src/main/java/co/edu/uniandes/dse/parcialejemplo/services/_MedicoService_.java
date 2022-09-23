@@ -20,7 +20,7 @@ public class _MedicoService_
 {
     @Autowired
     _MedicoRepository medicoRepository;
-
+    
     @Transactional
     public _MedicoEntity_ createMedico(_MedicoEntity_ medicoEntity) throws EntityNotFoundException, IllegalOperationException
     {
@@ -29,14 +29,15 @@ public class _MedicoService_
             return medicoRepository.save(medicoEntity);
 
     }
-
+    
     @Transactional
     public List<_MedicoEntity_> getMedicos()
     {
+
 		return medicoRepository.findAll();
     }  
 
-
+    /* 
     @Transactional
     public _MedicoEntity_ getMedico(Long idMedico) throws EntityNotFoundException
     {
@@ -46,4 +47,35 @@ public class _MedicoService_
         return medicoEntity.get();
 
     }
+
+    @Transactional
+    public _MedicoEntity_ updateMedico(Long idMedico, _MedicoEntity_ medico) throws EntityNotFoundException, IllegalOperationException 
+    {
+        List<_MedicoEntity_> medicoEntity = medicoRepository.FindByIdMedico(idMedico);
+        if (medicoEntity.isEmpty())
+            throw new EntityNotFoundException("MEDICO_NOT_FOUND");
+
+        if (!validateID_Medico(medico.getId()))
+            throw new IllegalOperationException("Id no válido");
+        
+        medico.setId(idMedico);     
+
+        return medicoRepository.save(medico);
+
+    }
+
+    @Transactional
+    public void deleteMedico (Long idMedico) throws EntityNotFoundException
+    {
+        Optional<_MedicoEntity_>  medicoEntity = medicoRepository.findById(idMedico);
+        if (medicoEntity.isEmpty())
+            throw new EntityNotFoundException("MEDICO_NOT_FOUND");
+        medicoRepository.deleteById(idMedico);
+    }
+
+    private boolean validateID_Medico(Long id)
+    {
+        return !(id == null);
+    }
+    */
 }

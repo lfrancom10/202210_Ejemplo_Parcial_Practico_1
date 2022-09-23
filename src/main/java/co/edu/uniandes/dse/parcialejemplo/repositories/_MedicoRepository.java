@@ -11,5 +11,5 @@ import co.edu.uniandes.dse.parcialejemplo.entities._MedicoEntity_;
 @Repository
 public interface _MedicoRepository extends JpaRepository<_MedicoEntity_, Long>
 {
-    List<_MedicoEntity_> FindByIdMedico (Long idMedico);
+    List<_MedicoEntity_> FindByIdMedico(Long idMedico);
 }
